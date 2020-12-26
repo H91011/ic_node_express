@@ -19,10 +19,16 @@ const addDefaultUsers = async userModel => {
   await user1.save();
 
   const user2 = new userModel({
-    name: "customer",
+    name: "customer1",
     type: 2
   });
   await user2.save();
+
+  const user3 = new userModel({
+    name: "customer2",
+    type: 2
+  });
+  await user3.save();
 };
 
 router.use(async (req, res, next) => {

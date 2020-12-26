@@ -29,8 +29,11 @@ router.post("/add", async (req, res, next) => {
 });
 
 router.post("/update", async (req, res, next) => {
-  const {id, data} = req.body;
-  TicketModel.updateOne({_id: id}, {$push: {body: data}}, function(err, docs) {
+  const {id, data, status} = req.body;
+  TicketModel.updateOne({_id: id}, {$push: {body: data}, status}, function(
+    err,
+    docs
+  ) {
     if (err) {
       res.status(400).send(err);
     } else {
