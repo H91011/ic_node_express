@@ -19,24 +19,22 @@ router.use(async (req, res, next) => {
 
 router.post("/add", async (req, res, next) => {
   const tc = new TicketModel(req.body);
-  const err = await tc.save();
-
-  if (err) {
-    res.status(400).send(err);
-  } else {
-    res.send({status: true});
-  }
+  await tc.save().then((err, ticket) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.send({status: true});
+    }
+  });
 });
 
 router.get("/list", async (req, res, next) => {
   const tickets = await TicketModel.find();
-  console.log(tickets);
   res.send(tickets);
 });
 
 router.get("/search", async (req, res, next) => {
   const tickets = await TicketModel.find();
-  console.log(tickets);
   res.send(tickets);
 });
 
