@@ -48,7 +48,7 @@ router.get("/list/", async (req, res, next) => {
   if (req.query.userId) {
     findParam.userId = req.query.userId;
   }
-  const tickets = await TicketModel.find({findParam});
+  const tickets = await TicketModel.find(findParam);
   res.send(tickets);
 });
 
