@@ -68,12 +68,13 @@ router.get("/show/:fileName", async (req, res, next) => {
 router.get("/list/", async (req, res, next) => {
   var findParam = {};
   const {userId, filter, search, byName} = req.query;
+  console.log(req.query);
   if (userId) {
     findParam.userId = userId;
   } else if (filter && filter != "all") {
     findParam.status = filter;
   } else if (search) {
-    if (byName) {
+    if (byName === "true") {
       var findUser = {name: new RegExp(search, "i")};
       const users = await UserModel.find(findUser);
       const ids = users.map(user => {
