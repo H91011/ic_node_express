@@ -83,7 +83,7 @@ router.get("/list/", async (req, res, next) => {
       res.send(tickets);
       return 0;
     } else {
-      findParam.subject = search;
+      findParam.subject = new RegExp(search, "i");
     }
   }
   const tickets = await TicketModel.find(findParam);
