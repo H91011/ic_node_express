@@ -42,8 +42,13 @@ router.post("/update", async (req, res, next) => {
   });
 });
 
-router.get("/list", async (req, res, next) => {
-  const tickets = await TicketModel.find();
+router.get("/list/", async (req, res, next) => {
+  console.log(req.query);
+  var findParam = {};
+  if (req.query.userId) {
+    findParam.userId = req.query.userId;
+  }
+  const tickets = await TicketModel.find({findParam});
   res.send(tickets);
 });
 
